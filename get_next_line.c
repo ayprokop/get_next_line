@@ -6,7 +6,7 @@
 /*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 09:40:00 by ayprokop          #+#    #+#             */
-/*   Updated: 2024/02/29 17:19:13 by ayprokop         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:21:23 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,28 @@ char	*ft_reduce_backup(char *tmp)
 {
 	printf("##**tmp: %s\n", tmp);
 	char	*backup;
-	int		count;
+	int		linelen;
+	int		size;
+	int		i;
+
+	linelen = 0;
+	while (tmp[linelen] &&  tmp[linelen] != '\n')
+		linelen++;
+	size = ft_strlen(tmp) - (linelen + 1);
+	backup = (char *)malloc(sizeof(char) * (size + 1));
+	i = 0;
+	while (*tmp && i < size)
+	{
+		backup[i] = tmp[linelen + 1];
+		i++;
+		linelen++;
+	} 
+	backup[i] = '\0';
+	printf("##**backup: %s\n", backup);
 	
-	count = 0;
-	while (tmp[count] != '\n')
-		count++;
-	backup = (char *)malloc(sizeof(char) * (count + 2));
-	backup = ft_strchr(tmp, '\n');
 	
 	
-	
-	return (tmp);
+	return (backup);
 }
 
 char	*get_next_line(int fd)
@@ -100,6 +111,7 @@ char	*get_next_line(int fd)
 	line = ft_put_line(tmp);
 	printf("++++line: %s\n", line);
 	backup = ft_reduce_backup(tmp);
+	printf("++++backup: %s\n", backup);
 	return (line);
 }
 
