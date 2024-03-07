@@ -6,52 +6,11 @@
 /*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 11:42:31 by ayprokop          #+#    #+#             */
-/*   Updated: 2024/02/29 12:58:03 by ayprokop         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:05:38 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	*ft_memmove(void *dst, const void *src, size_t len)
-{
-	size_t	i;
-
-	if ((dst == NULL) && (src == NULL))
-		return (NULL);
-	i = 0;
-	if (dst > src)
-	{
-		while (len)
-		{
-			len--;
-			*((unsigned char *)dst + len) = *((unsigned char *)src + len);
-		}
-	}
-	else
-	{
-		while (len)
-		{
-			len--;
-			*((unsigned char *)dst + i) = *((unsigned char *)src + i);
-			i++;
-		}
-	}
-	return (dst);
-}
-
-void	*ft_realloc(void *ptr, size_t size)
-{
-	unsigned char	*qtr;
-
-	if (!ptr)
-		return ((void *)malloc(size));
-	qtr = (void *)malloc(size);
-	if (!qtr)
-		return (NULL);
-	ft_memmove(qtr, ptr, size);
-	free(ptr);
-	return (qtr);
-}
 
 size_t	ft_strlen(const char *s)
 {
@@ -120,4 +79,28 @@ char	*ft_strchr(const char *s, int c)
 		i++;
 	}
 	return (0);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char				*substr;
+	unsigned int		i;
+
+	if (!s)
+		return (0);
+	if (start > ft_strlen(s))
+		len = 0;
+	else if (len > ft_strlen(s))
+		len = ft_strlen(s) - start;
+	substr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!substr)
+		return (0);
+	i = 0;
+	while (s[start + i] && i < len)
+	{
+		substr[i] = s[start + i];
+		i++;
+	}
+	substr[i] = '\0';
+	return (substr);
 }
