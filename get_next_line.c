@@ -6,7 +6,7 @@
 /*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 09:40:00 by ayprokop          #+#    #+#             */
-/*   Updated: 2024/03/07 16:31:02 by ayprokop         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:26:59 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_build_line(int fd, char *buf, char *backup)
 	int		done;
 
 	done = 1;
-	while (done != 0)
+	while (done > 0)
 	{
 		done = read(fd, buf, BUFFER_SIZE);
 		if (done == -1 || done == 0)
@@ -30,11 +30,9 @@ char	*ft_build_line(int fd, char *buf, char *backup)
 		backup = ft_strjoin(tmp, buf);
 		free(tmp);
 		tmp = NULL;
-		if (strchr(buf, '\n') != NULL)
+		if (ft_strchr(buf, '\n') != NULL)
 			break ;
 	}
-	free(buf);
-	buf = NULL;
 	return (backup);
 }
 
@@ -47,9 +45,9 @@ char	*ft_build_backup(char *line)
 	i = 0;
 	while (line[i] != '\0' && line[i] != '\n')
 		i++;
-	if (line[i] == '\0' || line[1] == '\0')
+	if (line[i] == '\0')
 		return (NULL);
-	backup = ft_substr(line, i + 1, ft_strlen(line) - i);
+	backup = ft_substr(line, i + 1, ft_strlen(line));
 	if (*backup == '\0')
 	{
 		free(backup);
@@ -71,6 +69,8 @@ char	*get_next_line(int fd)
 	if (!buf)
 		return (NULL);
 	line = ft_build_line(fd, buf, backup);
+	free(buf);
+	buf = NULL;
 	if (!line)
 		return (NULL);
 	backup = ft_build_backup(line);
@@ -80,7 +80,7 @@ char	*get_next_line(int fd)
 // int	main(void)
 // {
 // 	int	fd;
-// 	fd = open("file.txt", O_RDONLY);
+// 	fd = open("file2.txt", O_RDONLY);
 // 	int i = 0;
 // 	while (i < 3)
 // 	{
