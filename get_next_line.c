@@ -6,7 +6,7 @@
 /*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 09:40:00 by ayprokop          #+#    #+#             */
-/*   Updated: 2024/03/19 18:40:18 by ayprokop         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:04:51 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_build_line(int fd, char *buf, char *backup)
 		if (done == -1 || done == 0)
 			break ;
 		buf[done] = '\0';
-		if (!backup)
+		if (backup == NULL)
 			backup = ft_strdup("");
 		tmp = backup;
 		backup = ft_strjoin(tmp, buf);
