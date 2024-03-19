@@ -6,7 +6,7 @@
 /*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 09:40:00 by ayprokop          #+#    #+#             */
-/*   Updated: 2024/03/19 17:27:38 by ayprokop         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:40:18 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	*ft_build_line(int fd, char *buf, char *backup)
 			break ;
 	}
 	free(buf);
+	buf = NULL;
 	return (backup);
 }
 
@@ -70,23 +71,22 @@ char	*get_next_line(int fd)
 	if (!buf)
 		return (NULL);
 	line = ft_build_line(fd, buf, backup);
-	buf = NULL;
 	if (!line)
 		return (NULL);
 	backup = ft_build_backup(line);
 	return (line);
 }
 
-int	main(void)
-{
-	int	fd;
-	fd = open("file2.txt", O_RDONLY);
-	int i = 0;
-	while (i < 3)
-	{
-		printf("main: %s\n", get_next_line(fd));
-		i++;
-	}
-	close(fd);
-	return (0);
-}
+// int	main(void)
+// {
+// 	int	fd;
+// 	fd = open("file2.txt", O_RDONLY);
+// 	int i = 0;
+// 	while (i < 23)
+// 	{
+// 		printf("main: %s", get_next_line(fd));
+// 		i++;
+// 	}
+// 	close(fd);
+// 	return (0);
+// }
