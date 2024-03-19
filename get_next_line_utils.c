@@ -6,7 +6,7 @@
 /*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 11:42:31 by ayprokop          #+#    #+#             */
-/*   Updated: 2024/03/07 16:05:38 by ayprokop         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:49:30 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	new = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!new)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (s1[i])
 	{
@@ -78,7 +78,7 @@ char	*ft_strchr(const char *s, int c)
 			return ((char *)s + i);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -94,7 +94,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		len = ft_strlen(s) - start;
 	substr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!substr)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (s[start + i] && i < len)
 	{
