@@ -6,7 +6,7 @@
 /*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 09:40:00 by ayprokop          #+#    #+#             */
-/*   Updated: 2024/03/19 21:04:51 by ayprokop         ###   ########.fr       */
+/*   Updated: 2024/03/20 07:56:34 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,14 @@ char	*get_next_line(int fd)
 // int	main(void)
 // {
 // 	int	fd;
-// 	fd = open("file2.txt", O_RDONLY);
+// 	fd = open("file.txt", O_RDONLY);
 // 	int i = 0;
 // 	while (i < 23)
 // 	{
-// 		printf("main: %s", get_next_line(fd));
+// 		printf("%s", get_next_line(fd));
 // 		i++;
 // 	}
 // 	close(fd);
 // 	return (0);
 // }
+// // gcc -Werror -Wextra -Wall -D BUFFER_SIZE=43 *.c
